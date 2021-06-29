@@ -27,13 +27,13 @@
     
     NSMutableArray* models = [[NSMutableArray alloc] init];
     
-    for (NSString* url in @[@"www.baidu.com",@"blog.6ag.cn",@"www.qq.com"]) {
+    for (NSString* url in @[@"www.baidu.com"]) {
         TcmpServers* server = [[TcmpServers alloc] initWithHost:url];
         [models addObject:server];
     }
 //    self.manager = [[TcmpManager alloc] init];
     
-    [self.manager startPingWithCount:10 timeOut:3 servers:models complete:^(NSArray * _Nonnull models) {
+    [self.manager startPingWithCount:3 timeOut:3 servers:models complete:^(NSArray * _Nonnull models) {
         
         for (TcmpServers* server in models) {
             NSLog(@"server = %f",server.coast);

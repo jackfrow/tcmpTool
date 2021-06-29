@@ -9,19 +9,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+extern NSInteger const timeOut;
+
 @class TcmpServers;
 
-typedef void(^CompleteBlock)();
+typedef void(^CompleteBlock)(void);
 
 @interface TcmpServers : NSObject
 
-@property (nonatomic, copy) CompleteBlock complete;
+@property (nonatomic, copy,nullable) CompleteBlock complete;
 
 @property (nonatomic, readonly,strong) NSString *host;
 
 @property (nonatomic, assign) NSTimeInterval coast;
 
 @property (nonatomic, assign) NSInteger count;
+
+@property (nonatomic, assign) bool finish;
 
 @property (nonatomic, strong) id object;
 

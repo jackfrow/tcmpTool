@@ -56,21 +56,19 @@ typedef NS_ENUM(NSInteger,TcmpState) {
             [self completeWithState:TcmpStateTimeOut];
         });
         
-//        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-//            [self completeWithState:TcmpStateSuccess];
-//        });
+        dispatch_group_notify(self.group, dispatch_get_main_queue(), ^{
+            [self completeWithState:TcmpStateSuccess];
+        });
         
     }
 
 
 -(void)callEnter{
-//    dispatch_group_enter(self.group);
+    dispatch_group_enter(self.group);
 }
 
 -(void)callLeave{
-//    dispatch_group_leave(self.group);
-//    dispatch_group_leave(self.group);
-//    dispatch_group_leave(self.group);
+    dispatch_group_leave(self.group);
 }
 
 -(void)completeWithState:(TcmpState)state{

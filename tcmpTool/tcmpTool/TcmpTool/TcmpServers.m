@@ -54,6 +54,7 @@ NSInteger const timeOut = 9999;
         NSLog(@"ping finish");
         if (self.complete) {
             self.complete();
+            self.complete = nil;
         }
         //在这里callback.
         return;
@@ -66,7 +67,7 @@ NSInteger const timeOut = 9999;
 -(void)pingResult:(ULPingResult)result{
     switch (result) {
         case ULPingResultSuccess:{
-//            NSLog(@"ULPingResultSuccess");
+            NSLog(@"ULPingResultSuccess");
             NSDate* now = [[NSDate alloc] init];
             NSTimeInterval interval = [now timeIntervalSinceDate:self.startTime];
             self.timeCoast += interval * 1000;
@@ -74,7 +75,7 @@ NSInteger const timeOut = 9999;
             break;
         case ULPingResultSendFail:
         case ULPingResultFail:
-//            NSLog(@"ULPingResultFailed");
+            NSLog(@"ULPingResultFailed");
             self.timeCoast += 9999;
             break;
     }
@@ -95,7 +96,7 @@ NSInteger const timeOut = 9999;
 
     
 - (void)simplePing:(SimplePing *)pinger didFailWithError:(NSError *)error{
-//    NSLog(@"didFailWithError");
+    NSLog(@"didFailWithError");
     [self pingResult:ULPingResultFail];
 }
 
@@ -113,14 +114,14 @@ NSInteger const timeOut = 9999;
 
 
 - (void)simplePing:(SimplePing *)pinger didReceivePingResponsePacket:(NSData *)packet sequenceNumber:(uint16_t)sequenceNumber{
-//    NSLog(@"didReceivePingResponsePacket");
+    NSLog(@"didReceivePingResponsePacket");
     [self pingResult:ULPingResultSuccess];
 }
 
 
 - (void)simplePing:(SimplePing *)pinger didReceiveUnexpectedPacket:(NSData *)packet{
-//    NSLog(@"didReceiveUnexpectedPacket");
-    [self pingResult:ULPingResultFail];
+    NSLog(@"didReceiveUnexpectedPacket");
+//    [self pingResult:ULPingResultFail];
 }
 
 @end
